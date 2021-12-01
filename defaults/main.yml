@@ -1,0 +1,11 @@
+---
+# defaults file for ansible-role-crio_k8s
+# crio version tested = 1.20 1.21 1.22.1
+crio_major_version: "1.22"
+crio_minor_version: "1"
+crio_os_distro: "{{ ansible_distribution }}"
+crio_os_major_version: "{{ ansible_distribution_major_version }}"
+crio_cni: flannel
+kubernetes_cni: "{{ crio_cni }}"
+kubernetes_cni_network: "10.244.0.0/16"
+kubernetes_master: False

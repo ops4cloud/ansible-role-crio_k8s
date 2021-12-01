@@ -1,0 +1,14 @@
+---
+# tasks file for ansible-role-crio_k8s
+- include_tasks: prerequisites.yml
+  tags: prerequisites
+
+- include_tasks: crio.yml
+  tags: crio
+
+- include_tasks: kubernetes.yml
+  tags: kubernetes
+
+- include_tasks: kubernetes_master.yml
+  when: kubernetes_master
+  tags: kubernetes_master

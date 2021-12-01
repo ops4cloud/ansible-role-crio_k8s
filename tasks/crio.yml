@@ -1,0 +1,25 @@
+---
+- name: Deploy repo for CRI-O
+  template:
+    src: "{{ item }}.j2"
+    dest: "/etc/yum.repos.d/{{ item }}"
+  with_items:
+    - crio.repo
+
+- name: Install pkgs for CRI-O
+  yum:
+    name:
+      - cri-o
+    state: present
+    update_cache: yes
+
+- name: Delete all cni configuration
+  shell: rm -f /etc/cni/net.d/*
+
+- name: Deploy config for CRI-O
+  template:
+    src: "{{ item }}.j2"
+    dest: "/etc/crio/{{ item }}"
+  with_items:
+    - crio.conf
+  notify: Start CRI-O

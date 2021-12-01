@@ -1,0 +1,22 @@
+---
+# handlers file for ansible-role-crio_k8s
+- name: Start CRI-O
+  systemd:
+    name: crio
+    enabled: yes
+    daemon_reload: yes
+    state: started
+
+- name: Restart CRI-O
+  systemd:
+    name: crio
+    enabled: yes
+    daemon_reload: yes
+    state: restarted
+
+- name: Start Kubernetes
+  systemd:
+    name: kubelet
+    enabled: yes
+    daemon_reload: yes
+    state: started

@@ -1,0 +1,31 @@
+---
+- name: Deploy repo for Kubernetes
+  template:
+    src: "{{ item }}.j2"
+    dest: "/etc/yum.repos.d/{{ item }}"
+  with_items:
+    - "{{ crio_os_distro }}_{{ crio_os_major_version }}_k8s.repo"
+
+- name: Install pkgs for Kubernetes
+  yum:
+    name:
+      - "kubelet-{{ crio_major_version }}.0-0" 
+      - "kubeadm-{{ crio_major_version }}.0-0"
+      - "kubectl-{{ crio_major_version }}.0-0"
+    state: present
+    update_cache: yes
+    disable_excludes: kubernetes
+
+- name: Copy kubelet systemd config for crio
+  copy:
+    src: 10-kubeadm.conf
+    dest: /usr/lib/systemd/system/kubelet.service.d/10-kubeadm.conf
+    owner: root
+  notify: Start Kubernetes
+
+- name: Start CRI-O
+  systemd:
+    name: crio
+    enabled: yes
+    daemon_reload: yes
+    state: started
