@@ -1,6 +1,7 @@
 ---
 # defaults file for ansible-role-crio_k8s
 # crio version tested = 1.20 1.21 1.22.1
+# crio_major_version: "1.26"
 crio_major_version: "1.22"
 crio_minor_version: "1"
 crio_os_distro: "{{ ansible_distribution }}"
