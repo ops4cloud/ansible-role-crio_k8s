@@ -7,6 +7,15 @@
     - br_netfilter
     - overlay
 
+- name: Add br_netfilter config for kernel module
+  copy: 
+    path: /etc/modules-load.d/br_netfilter.conf
+    content: |
+      br_netfilter
+    owner: root
+    group: root
+    mode: 644
+
 - name: Add custom sysctl config
   sysctl:
     name: "{{ item }}"
