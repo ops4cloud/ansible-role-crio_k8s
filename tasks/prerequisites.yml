@@ -9,7 +9,7 @@
 
 - name: Add br_netfilter config for kernel module
   copy: 
-    path: /etc/modules-load.d/br_netfilter.conf
+    dest: /etc/modules-load.d/br_netfilter.conf
     content: |
       br_netfilter
     owner: root

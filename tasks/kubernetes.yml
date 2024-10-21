@@ -9,9 +9,9 @@
 - name: Install pkgs for Kubernetes
   yum:
     name:
-      - "kubelet-{{ crio_major_version }}.0-0" 
-      - "kubeadm-{{ crio_major_version }}.0-0"
-      - "kubectl-{{ crio_major_version }}.0-0"
+      - kubelet
+      - kubeadm
+      - kubectl
     state: present
     update_cache: yes
     disable_excludes: kubernetes
