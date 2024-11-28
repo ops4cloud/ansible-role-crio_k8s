@@ -37,4 +37,9 @@
 
 - name: set join command
   set_fact:
-    join_command: "{{ join_command_raw.stdout_lines[0] }}"  
+    join_command: "{{ join_command_raw.stdout_lines[0] }}"
+
+- name: Set Strict ARP for kube-proxy
+  shell: |
+    kubectl get configmap kube-proxy -n kube-system -o yaml | sed -e "s/strictARP: false/strictARP: true/" | kubectl apply -f - -n kube-system
+  when: kubernetes_strictarp

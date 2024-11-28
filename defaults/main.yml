@@ -9,4 +9,5 @@ crio_os_major_version: "{{ ansible_distribution_major_version }}"
 crio_cni: flannel
 kubernetes_cni: "{{ crio_cni }}"
 kubernetes_cni_network: "10.244.0.0/16"
-kubernetes_master: False
+kubernetes_master: false
+kubernetes_strictarp: true
