@@ -21,10 +21,10 @@
   shell: |
     flux bootstrap github \
     --token-auth \
-    --owner="{{ flux_github_owner }}" \
-    --repository="{{ flux_github_repo }}" \
-    --branch="{{ flux_github_branch }}" \
-    --path="{{ flux_cluster_path }}" \
+    --owner={{ flux_github_owner }} \
+    --repository={{ flux_github_repo }} \
+    --branch={{ flux_github_branch }} \
+    --path={{ flux_cluster_path }} \
     --personal > flux_bootstrap_output.txt
   when: not bootstrap.stat.exists
   environment:
