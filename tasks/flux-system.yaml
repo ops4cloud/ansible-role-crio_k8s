@@ -12,14 +12,14 @@
   shell: . <(flux completion bash)
   when: not flux.stat.exits
 
-- name: Bootstrap project Flux for {{ kubernetes_clustername }}
+- name: Bootstrap project Flux for "{{ kubernetes_clustername }}"
   shell: |
     flux bootstrap github \
     --token-auth \
-    --owner={{ flux_github_owner }} \
-    --repository={{ flux_github_repo }} \
-    --branch={{ flux_github_branch }} \
-    --path={{ flux_cluster_path }} \
+    --owner="{{ flux_github_owner }}" \
+    --repository="{{ flux_github_repo }}" \
+    --branch="{{ flux_github_branch }}" \
+    --path="{{ flux_cluster_path }}" \
     --personal > flux_bootstrap_output.txt
   env:
     GITHUB_TOKEN: "{{ flux_github_token }}"
