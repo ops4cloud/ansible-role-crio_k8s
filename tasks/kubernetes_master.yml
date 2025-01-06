@@ -1,6 +1,13 @@
 ---
+- name: Copy KubeAdm config file
+  template:
+    src: kubeadm-config.yaml.j2
+    dest: /root/kubeadm-config.yaml
+    owner: root
+    group: root
+
 - name: initialize the cluster
-  shell: "kubeadm init --pod-network-cidr={{ kubernetes_cni_network }} >> cluster_initialized.txt"
+  shell: "kubeadm init --config=/root/kubeadm-config.yaml >> cluster_initialized.txt"
   args:
     chdir: $HOME
     creates: cluster_initialized.txt

@@ -11,3 +11,4 @@ kubernetes_cni: "{{ crio_cni }}"
 kubernetes_cni_network: "10.244.0.0/16"
 kubernetes_master: false
 kubernetes_strictarp: true
+kubernetes_clustername: kubernetes
