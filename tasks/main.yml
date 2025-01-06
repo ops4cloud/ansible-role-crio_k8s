@@ -12,3 +12,6 @@
 - include_tasks: kubernetes_master.yml
   when: kubernetes_master
   tags: kubernetes_master
+
+- include_tasks: flux-system.yaml
+  when: kubernetes_master and kubernetes_flux
