@@ -13,9 +13,9 @@
   shell: curl -s https://fluxcd.io/install.sh | bash
   when: not flux.stat.exists
 
-- name: Install auto-completion
-  shell: . <(flux completion bash)
-  when: not flux.stat.exists
+# - name: Install auto-completion
+#   shell: . <(flux completion bash)
+#   when: not flux.stat.exists
 
 - name: Bootstrap project Flux for "{{ kubernetes_clustername }}"
   shell: |
