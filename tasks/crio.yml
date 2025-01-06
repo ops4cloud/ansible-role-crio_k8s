@@ -12,9 +12,11 @@
       - cri-o
     state: present
     update_cache: yes
+  register: crio
 
 - name: Delete all cni configuration
   shell: rm -f /etc/cni/net.d/*
+  when: crio.changed
 
 - name: Deploy config for CRI-O
   template:
