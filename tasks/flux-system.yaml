@@ -21,5 +21,5 @@
     --branch="{{ flux_github_branch }}" \
     --path="{{ flux_cluster_path }}" \
     --personal > flux_bootstrap_output.txt
-  env:
+  environment:
     GITHUB_TOKEN: "{{ flux_github_token }}"
