@@ -2,7 +2,7 @@
 # defaults file for ansible-role-crio_k8s
 # crio version tested = 1.20 1.21 1.22.1
 # crio_major_version: "1.26"
-crio_major_version: "1.22"
+crio_major_version: "1.32"
 crio_minor_version: "1"
 crio_os_distro: "{{ ansible_distribution }}"
 crio_os_major_version: "{{ ansible_distribution_major_version }}"
@@ -12,9 +12,3 @@ kubernetes_cni_network: "10.244.0.0/16"
 kubernetes_master: false
 kubernetes_strictarp: true
 kubernetes_clustername: kubernetes
-kubernetes_flux: true
-flux_github_owner: ops4cloud
-flux_github_repo: git@github.com:ops4cloud/flux-infra.git
-flux_github_branch: main
-flux_cluster_path: clusters/{{ kubernetes_clustername }}
-flux_github_token:
