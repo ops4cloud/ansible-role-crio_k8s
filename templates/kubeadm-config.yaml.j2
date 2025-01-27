@@ -25,6 +25,7 @@ etcd:
     extraArgs:
       listen-metrics-urls: "http://0.0.0.0:2381"
       listen-client-urls: "https://127.0.0.1:2379,https://{{ ansible_default_ipv4.address }}:2379"
-kubeProxy:
-  config:
-    metricsBindAddress: "0.0.0.0:10249"
+---
+apiVersion: kubeproxy.config.k8s.io/v1alpha1
+kind: KubeProxyConfiguration
+metricsBindAddress: "0.0.0.0:10249"
