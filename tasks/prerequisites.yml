@@ -33,3 +33,13 @@
 - name: Set SELinux disabled mode
   selinux:
     state: disabled
+  register: selinux_config_changed
+
+- name: Reboot the server if SELinux config was changed
+  ansible.builtin.reboot:
+    reboot_timeout: 60
+  when: selinux_config_changed.changed
+
+- name: Wait for the server to become available after reboot
+  ansible.builtin.wait_for_connection:
+    timeout: 60
