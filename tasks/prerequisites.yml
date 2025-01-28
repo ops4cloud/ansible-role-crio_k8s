@@ -30,7 +30,6 @@
 - name: disable swap on host
   command: "swapoff -a"
 
-- name: Set SELinux permisive mode
+- name: Set SELinux disabled mode
   selinux:
-    policy: targeted
-    state: permissive
+    state: disabled
