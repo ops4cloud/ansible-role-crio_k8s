@@ -10,6 +10,7 @@
   yum:
     name:
       - cri-o
+      - container-selinux
     state: present
     update_cache: yes
   register: crio
