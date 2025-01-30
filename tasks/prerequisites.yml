@@ -30,16 +30,16 @@
 - name: disable swap on host
   command: "swapoff -a"
 
-# - name: Set SELinux disabled mode
-#   selinux:
-#     state: disabled
-#   register: selinux_config_changed
+- name: Set SELinux disabled mode
+  selinux:
+    state: "{{ kubernetes_selinux }}"
+  register: selinux_config_changed
 
-# - name: Reboot the server if SELinux config was changed
-#   ansible.builtin.reboot:
-#     reboot_timeout: 60
-#   when: selinux_config_changed.changed
+- name: Reboot server to apply selinux
+  shell: sleep 5 ; reboot
+  when: selinux_config_changed.changed
 
-# - name: Wait for the server to become available after reboot
-#   ansible.builtin.wait_for_connection:
-#     timeout: 60
+- name: Wait for reboot for 30 seconds
+  ansible.builtin.wait_for_connection:
+    delay: 30
+    timeout: 60
